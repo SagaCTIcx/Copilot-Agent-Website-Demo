@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OxaR CX | AI Customer Experience</title>
-  <meta name="description" content="Simple OxaR CX mock company page for GitHub Pages and Microsoft Copilot Studio web embedding." />
+  <meta name="description" content="Simple OxaR CX mock company page with embedded Microsoft Copilot Studio agent." />
   <style>
     :root {
       --bg: #fffaf7;
-      --bg-soft: #fff2eb;
       --card: #ffffff;
       --text: #4a1717;
       --muted: #7c5555;
@@ -22,6 +21,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Inter, Segoe UI, Arial, sans-serif;
@@ -39,10 +39,11 @@
     .topbar {
       padding: 18px 0;
       border-bottom: 1px solid var(--line);
-      background: rgba(255,250,247,0.88);
+      background: rgba(255,250,247,0.9);
       position: sticky;
       top: 0;
       backdrop-filter: blur(10px);
+      z-index: 10;
     }
 
     .topbar-inner {
@@ -84,7 +85,7 @@
     }
 
     .hero {
-      padding: 56px 0 28px;
+      padding: 52px 0 26px;
     }
 
     .eyebrow {
@@ -100,14 +101,14 @@
 
     h1 {
       margin: 0 0 14px;
-      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-size: clamp(2rem, 5vw, 3.4rem);
       line-height: 1.05;
       letter-spacing: -0.03em;
       max-width: 10ch;
     }
 
     .lead {
-      max-width: 700px;
+      max-width: 720px;
       color: var(--muted);
       font-size: 1.02rem;
       margin: 0;
@@ -168,8 +169,7 @@
     }
 
     .card p,
-    .section-copy,
-    .small-note {
+    .section-copy {
       color: var(--muted);
     }
 
@@ -191,40 +191,10 @@
       letter-spacing: -0.02em;
     }
 
-    .embed-wrap {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .chat-demo {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .bubble {
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      font-size: 14px;
-      max-width: 90%;
-    }
-
-    .bubble.user {
-      margin-left: auto;
-      background: linear-gradient(135deg, rgba(178,34,34,0.10), rgba(212,175,55,0.16));
-    }
-
-    .bubble.bot {
-      background: #fff;
-    }
-
     .embed-shell {
-      min-height: 420px;
+      min-height: 520px;
       background: #fff;
-      border: 1px dashed rgba(145, 31, 31, 0.25);
+      border: 1px solid rgba(145, 31, 31, 0.18);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -254,25 +224,17 @@
 
     .embed-body {
       flex: 1;
-      padding: 22px;
-      display: grid;
-      place-items: center;
-      text-align: center;
+      min-height: 460px;
+      background: #fff;
     }
 
-    .code-box {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: #fffdfb;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12.5px;
-      line-height: 1.55;
-      text-align: left;
-      white-space: pre-wrap;
-      word-break: break-word;
-      color: var(--text);
+    .embed-body iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      border: 0;
+      display: block;
+      background: #fff;
     }
 
     .footer {
@@ -291,8 +253,7 @@
     }
 
     @media (max-width: 860px) {
-      .grid,
-      .embed-wrap {
+      .grid {
         grid-template-columns: 1fr;
       }
     }
@@ -308,6 +269,13 @@
       .topbar-inner {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .embed-shell {
+        min-height: 620px;
+      }
+      .embed-body,
+      .embed-body iframe {
+        min-height: 560px;
       }
     }
   </style>
@@ -332,7 +300,7 @@
         and guide visitors through digital journeys with an AI advisor powered by Microsoft Copilot Studio.
       </p>
       <div class="hero-actions">
-        <a class="btn" href="#agent">Open AI advisor section</a>
+        <a class="btn" href="#agent">Open AI advisor</a>
         <a class="btn-secondary" href="#about">See how it works</a>
       </div>
     </div>
@@ -344,17 +312,17 @@
         <article class="card">
           <div class="icon">💬</div>
           <h3>Answer questions</h3>
-          <p>Use the agent to handle FAQs, service questions, and first-line digital support.</p>
+          <p>Handle FAQs, service questions, and first-line digital support with a friendly AI advisor.</p>
         </article>
         <article class="card">
           <div class="icon">⚙️</div>
           <h3>Guide visitors</h3>
-          <p>Help users navigate products, services, and next steps in a simple conversational way.</p>
+          <p>Help users find the right service, package, or next step through a natural conversation.</p>
         </article>
         <article class="card">
           <div class="icon">🚀</div>
-          <h3>Easy to test</h3>
-          <p>Single HTML file, minimal layout, and one clear area for embedding your Copilot Studio agent.</p>
+          <h3>Easy to demo</h3>
+          <p>Single HTML file, no framework, and a live agent already embedded for GitHub Pages.</p>
         </article>
       </div>
     </div>
@@ -362,43 +330,23 @@
 
   <section id="agent">
     <div class="container">
-      <h2 class="section-title">AI advisor embed area</h2>
+      <h2 class="section-title">Live AI advisor</h2>
       <p class="section-copy">
-        This section is intentionally simple so you can quickly paste your Copilot Studio website embed code and test it on GitHub Pages.
+        The Copilot Studio agent is embedded below and ready for testing on the public demo page.
       </p>
 
-      <div class="embed-wrap">
-        <div class="card">
-          <h3 style="margin-top:0;">Suggested demo message flow</h3>
-          <div class="chat-demo">
-            <div class="bubble user">I need a better way to support customers online.</div>
-            <div class="bubble bot">I can help with that. We combine AI self-service, guided assistance, and escalation paths for more complex needs.</div>
-            <div class="bubble user">Can you also help with lead capture or product questions?</div>
-            <div class="bubble bot">Yes. The same AI advisor can answer questions, recommend next steps, and collect contact details for follow-up.</div>
-          </div>
+      <div class="embed-shell">
+        <div class="embed-head">
+          <strong>Copilot Studio web chat</strong>
+          <span class="pill">Live embed</span>
         </div>
-
-        <div class="embed-shell">
-          <div class="embed-head">
-            <strong>Copilot Studio web embed</strong>
-            <span class="pill">Replace placeholder</span>
-          </div>
-          <div class="embed-body">
-            <div>
-              <h3 style="margin-top:0;">Paste your agent code here</h3>
-              <p class="small-note">
-                Keep this container and replace the placeholder below with the web embed snippet from Copilot Studio.
-              </p>
-              <div class="code-box">&lt;!-- Paste your Copilot Studio web embed code here --&gt;
-
-&lt;!-- Example workflow:
-1) Publish the agent to website/web channel
-2) Copy the generated embed code
-3) Replace this placeholder block
-4) Upload index.html to GitHub Pages
---&gt;</div>
-            </div>
-          </div>
+        <div class="embed-body">
+          <iframe
+            src="https://copilotstudio.microsoft.com/environments/Default-b10b4e39-9f06-4130-961a-234fd8d1a599/bots/crd22_agentVFONZH/webchat?__version__=2"
+            title="OxaR CX AI Advisor"
+            loading="lazy"
+            allow="clipboard-write">
+          </iframe>
         </div>
       </div>
     </div>
